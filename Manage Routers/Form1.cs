@@ -22,7 +22,7 @@ namespace Manage_Routers
                     if (args[2] != "fritz" && args[2] != "hotspot") throw new ArgumentException(args[2].ToString() + " is not a valid Wifi-name.");
                     else System.Diagnostics.Process.Start("cmd.exe", "ssh cedri@10.2.2.1 ./switch_wifi_" + args[2] + ".sh");
                 }
-                catch (ArgumentException e)
+                catch (ArgumentException ex)
                 {
                     Console.WriteLine(e.ToString());
                     this.Close();
@@ -35,7 +35,7 @@ namespace Manage_Routers
                 {
                     if (args[2] == null && args[2] != "1" && args[2] != "2") throw new ArgumentException(args[2].ToString() + " is not a valid Device ID.");
                 }
-                catch (ArgumentException e)
+                catch (ArgumentException ex)
                 {
                     Console.WriteLine(e.ToString());
                     this.Close();
@@ -55,7 +55,7 @@ namespace Manage_Routers
                 {
                     if (args[2] == null && args[2] != "1" && args[2] != "2") throw new ArgumentException(args[2].ToString() + " is not a valid Device ID.");
                 }
-                catch (ArgumentException e)
+                catch (ArgumentException ex)
                 {
                     Console.WriteLine(e.ToString());
                     this.Close();
