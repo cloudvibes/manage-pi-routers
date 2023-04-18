@@ -19,7 +19,7 @@ namespace Manage_Routers
             {
                 try
                 {
-                    if (args[2] != "fritz" && args[2] != "hotspot") throw new ArgumentException(args[2].ToString() + " is not a valid Wifi-name.";
+                    if (args[2] != "fritz" && args[2] != "hotspot") throw new ArgumentException(args[2].ToString() + " is not a valid Wifi-name.");
                     else System.Diagnostics.Process.Start("cmd.exe", "ssh cedri@10.2.2.1 ./switch_wifi_" + args[2] + ".sh");
                 }
                 catch (ArgumentException e)
@@ -49,6 +49,27 @@ namespace Manage_Routers
                 System.Diagnostics.Process.Start("cmd.exe", "ssh cedri@10.2.2.1 htop");
                 this.Close();
             }
+            else if (args[1] == "ping")
+            {
+                try
+                {
+                    if (args[2] == null && args[2] != "1" && args[2] != "2") throw new ArgumentException(args[2].ToString() + " is not a valid Device ID.");
+                }
+                catch (ArgumentException e)
+                {
+                    Console.WriteLine(e.ToString());
+                    this.Close();
+                    throw;
+                }
+                if (args[2] == "1")
+                {
+                    System.Diagnostics.Process.Start("cmd.exe", "ssh cedri@192.168.178.1 ping " + args[3]);
+                    this.Close();
+                }
+                System.Diagnostics.Process.Start("cmd.exe", "ssh cedri@10.2.2.1 ping " + args[3]);
+                this.Close();
+            }
+            else this.Close();
         }
     }
 }
